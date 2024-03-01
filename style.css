@@ -1,6 +1,6 @@
 :root {
     --accent-color: #dbffea;
-    --dark-color: #333;
+    --dark-color: #07d411;
     --light-color: #FDFAF6;
     --hover-color: #FDFAF6;
     --navigation-btn-color: var(--accent-color);
@@ -25,6 +25,8 @@ body {
     width: 100vw;
     cursor: none;
     position: relative;
+    overflow-x: hidden;
+
 }
 
 #cursor-dot {
@@ -65,7 +67,25 @@ body:has(a:hover) {
     #cursor-circle {
         width: 80px;
         height: 80px;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(123, 134, 238, 0.4);
+        border: 1px solid transparent;
+    }
+}
+
+body:has(.logo span:hover) {
+    #cursor-circle {
+        width: 80px;
+        height: 80px;
+        background: rgba(1, 220, 30, 0.627);
+        border: 1px solid transparent;
+    }
+}
+
+body:has(.codename:hover) {
+    #cursor-circle {
+        width: 130px;
+        height: 130px;
+        background: rgba(1, 220, 30, 0.627);
         border: 1px solid transparent;
     }
 }
@@ -105,6 +125,14 @@ body:has(a:hover) {
     font: bolder 1.8rem sans-serif;
 
     color: var(--accent-color);
+}
+
+.logo span {
+    font: bolder 1.8rem sans-serif;
+
+    margin-right: auto;
+    justify-self: first baseline;
+    color: var(--dark-color);
 }
 
 .menu-icon {
@@ -150,7 +178,7 @@ main {
     justify-content: center;
     gap: 3rem;
     width: 100%;
-    height: 100%;
+    height: 95vh;
     padding: 14rem 2rem;
     background: linear-gradient(to right, var(--gradient-left-color) 70%, var(--gradient-right-color) 30%);
 }
@@ -271,6 +299,8 @@ main {
         margin-right: auto;
         justify-self: first baseline;
     }
+
+
 
     .menu-btn:not(:checked)+.menu {
         max-height: 0;
