@@ -1,0 +1,304 @@
+:root {
+    --accent-color: #dbffea;
+    --dark-color: #333;
+    --light-color: #FDFAF6;
+    --hover-color: #FDFAF6;
+    --navigation-btn-color: var(--accent-color);
+    --gradient-left-color: #000080;
+    --gradient-right-color: #6666FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: max-content;
+    width: 100vw;
+    cursor: none;
+    position: relative;
+}
+
+#cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 1s linear;
+    pointer-events: none;
+    z-index: 200;
+}
+
+#cursor-circle {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    position: absolute;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s linear, border 0.3s linear,
+        width 0.2s linear, height 0.2s linear, opacity 0.7s 0.3s linear;
+    pointer-events: none;
+    z-index: 200;
+}
+
+
+
+/*also you can use :has selector to replace script */
+body:has(a:hover) {
+    #cursor-circle {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid transparent;
+    }
+}
+
+
+
+.header {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    text-align: center;
+    padding: .5rem 0;
+    top: 0;
+    z-index: 101;
+    background: linear-gradient(to right, var(--gradient-left-color) 70%, var(--gradient-right-color) 30%);
+}
+
+
+.header ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: .5rem 3rem;
+    color: var(--accent-color);
+}
+
+.header ul li a {
+    color: var(--accent-color);
+    font: bolder 1.2rem sans-serif;
+}
+
+.logo {
+    font: bolder 1.8rem sans-serif;
+
+    color: var(--accent-color);
+}
+
+.menu-icon {
+    display: none;
+}
+
+.menu-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: invert(100%);
+}
+
+.name {
+    font: bolder;
+    font-family: monospace;
+    color: var(--accent-color);
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    font-size: 2rem;
+}
+
+.name span {
+    display: block;
+}
+
+.name span:nth-child(2) {
+    font-size: 3rem;
+}
+
+.name span:nth-child(2)::after {
+    content: "</>";
+}
+
+.name span:nth-child(2)::before {
+    content: "<>";
+}
+
+main {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+    height: 100%;
+    padding: 14rem 2rem;
+    background: linear-gradient(to right, var(--gradient-left-color) 70%, var(--gradient-right-color) 30%);
+}
+
+.tagline {
+    font: 1.5rem sans-serif;
+    color: var(--accent-color);
+    max-width: 550px;
+
+}
+
+.container__hero {
+    position: relative;
+    height: max-content;
+    height: max-content;
+}
+
+
+.container__profile {
+    position: relative;
+    height: max-content;
+    width: max-content;
+    z-index: 100;
+}
+
+.container__profile::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--accent-color);
+    border-top: none;
+    border-left: none;
+}
+
+.container__profile::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--accent-color);
+    border-bottom: none;
+    border-right: none;
+}
+
+.profile {
+    width: 12rem;
+    height: fit-content;
+    object-fit: contain;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+
+}
+
+/* fun effects */
+.container__hero::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-image: repeating-linear-gradient(45deg, #b51160 0, #b51160 2px, transparent 0, transparent 50%);
+    background-size: 64px 64px;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+    main {
+        flex-direction: column;
+        justify-content: unset;
+        align-items: center;
+        padding: 3rem 2rem;
+        height: 95vh;
+    }
+
+
+
+    .name span {
+        display: block;
+    }
+
+    .menu-icon {
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .header ul {
+        flex-direction: column;
+    }
+
+    .header ul li {
+        width: 100%;
+        text-align: center;
+        font: bold 1.2rem sans-serif;
+        padding: 10px 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        height: fit-content;
+        position: relative;
+    }
+
+    /* random gradients */
+
+
+
+    .logo {
+        font: bolder 1.8rem sans-serif;
+        padding-left: 20px;
+        padding-top: 20px;
+        margin-right: auto;
+        justify-self: first baseline;
+    }
+
+    .menu-btn:not(:checked)+.menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .menu-btn:checked+.menu {
+        max-height: 240px;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+}
+
+.menu-btn {
+    display: none;
+}
+
+.menu-icon img {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
