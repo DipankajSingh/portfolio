@@ -9,6 +9,8 @@
     --navigation-btn-color: var(--accent-color);
     --gradient-left-color: #000080;
     --gradient-right-color: #6666FF;
+    --circuit-board-color: #28db00;
+    --circuit-board-shadow-color: rgb(4, 185, 4);
 }
 
 * {
@@ -149,18 +151,6 @@ body {
     width: 1.5rem;
 }
 
-.circuitBoard {
-    position: absolute;
-    top: 45%;
-    right: 010vw;
-    translate: 0 -50%;
-    z-index: -1;
-    width: max-content;
-    height: 400px;
-    rotate: 90deg;
-
-}
-
 @media screen and (max-width: 767px) {
     .menu-icon {
         display: inline-block;
@@ -234,4 +224,141 @@ a {
 
 ul {
     list-style: none;
+}
+
+/* CIRCUIT BOARD DESIGN */
+
+
+.circuitBoard {
+    padding-top: 2rem;
+    position: absolute;
+    top: 45%;
+    right: 010vw;
+    translate: 0 -50%;
+    z-index: -1;
+    width: max-content;
+    height: 50%;
+    rotate: 90deg;
+    filter:
+        drop-shadow(0 0 20px var(--circuit-board-color)) drop-shadow(0 0 10px var(--circuit-board-color));
+}
+
+
+.circle,
+.line {
+    fill: var(--circuit-board-color);
+}
+
+.line1 {
+    animation: blink 3s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0% {
+        fill: var(--circuit-board-color);
+    }
+
+    25% {
+        fill: transparent;
+    }
+
+    50% {
+        fill: var(--circuit-board-shadow-color);
+    }
+
+    100% {
+        fill: var(--circuit-board-color);
+    }
+}
+
+/* the watchContainer starts here */
+
+.watchContainer {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 46px;
+}
+
+.watchHolder {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    bottom: 2em;
+    border-radius: 999px 999px 100px 100px;
+    background-color: #b2e05b;
+}
+
+/* buttons */
+
+.watchHolder button {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+}
+
+.watchHolder__on {
+    height: 14px;
+    width: 16px;
+    border-radius: 999px;
+    background-color: red;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+}
+
+.watchHolder__left {
+    height: 14px;
+    width: 24px;
+    border-radius: 999px;
+    background-color: rgb(15, 15, 15);
+    left: 10px;
+    bottom: 10px;
+}
+
+.watchHolder__right {
+    height: 14px;
+    width: 24px;
+    border-radius: 999px;
+    background-color: rgb(15, 15, 15);
+    right: 10px;
+    bottom: 10px;
+}
+
+.watchBody {
+    position: absolute;
+    bottom: 60px;
+    display: grid;
+    place-items: center;
+    height: 150px;
+    width: 150px;
+    background-color: #222222;
+    transform: perspective(500px) rotateX(70deg);
+    border-radius: 50%;
+}
+
+.watchX {
+    transform: perspective(600px) rotateX(75deg);
+    position: absolute;
+    height: 140px;
+    width: 140px;
+    bottom: 65px;
+    background-color: rgb(0, 255, 0);
+
+    border-radius: 50%;
+    clip-path: polygon(0 0, 100% 0, 60% 50%, 100% 100%, 0 100%, 40% 50%);
+}
+
+.focusBeam {
+    position: absolute;
+    bottom: 2.5em;
+    border-radius: 50%;
+    height: 50%;
+
+    width: 400px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 128, 0, 0.285));
+    clip-path: polygon(0 0, 100% 0, 65% 100%, 35% 100%);
 }
