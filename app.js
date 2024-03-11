@@ -41,21 +41,44 @@ watchHolderLeft.addEventListener('click', () => {
 })
 
 // WATCH CONTROLS WITH DATA ATTRIBUTE 
-const watchX = $('.watchX')
+const watchX = $('.watchX');
 
-// turn off the watch on the click of the watchHolder__on button
-const watchHolder__on = $('.watchHolder__on')
+// turn on/off the watch with data attribute
+const watchHolder__on = $('.watchHolder__on');
 
 watchHolder__on.addEventListener('click', () => {
-    watchX.dataset.watchOn = 'false'
-})
-
-
-watchX.addEventListener('click', () => {
     if (watchX.dataset.watchOn == 'false') {
+        watchHolder__on.style.backgroundColor = 'red'
+
         watchX.dataset.watchOn = 'true'
     } else {
+        watchHolder__on.style.backgroundColor = 'green'
+
         watchX.dataset.watchOn = 'false'
     }
 })
 
+// INTERSECTION OBSERVER
+
+// runs when element came in scene
+function displayEntry(entry) {
+    if (entry.isIntersecting) {
+        console.log(entry.target)
+        // bring the watch in view by scrolling to is, smoothly
+        watchX.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+}
+
+let callback = function (entries, observer) {
+    entries.forEach(entry => {
+        displayEntry(entry);
+    });
+};
+
+let observer = new IntersectionObserver(callback, {
+    threshold: 0.5
+});
+
+let target = $('.watchContainer');
+
+observer.observe(target);

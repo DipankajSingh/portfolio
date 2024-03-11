@@ -11,6 +11,9 @@
     --gradient-right-color: #6666FF;
     --circuit-board-color: #28db00;
     --circuit-board-shadow-color: rgb(4, 185, 4);
+    --animation-delay: 1s;
+    --animation-duration: 2s;
+    --animation-iteration-count: 3;
 }
 
 * {
@@ -24,6 +27,8 @@
     margin: 0;
     padding: 0;
 }
+
+
 
 body {
     background-color: var(--dark-color);
@@ -243,31 +248,60 @@ ul {
         drop-shadow(0 0 20px var(--circuit-board-color)) drop-shadow(0 0 10px var(--circuit-board-color));
 }
 
+/*      CIRCUIT BOARD ANIMATIONS */
 
 .circle,
 .line {
     fill: var(--circuit-board-color);
+    transform-origin: center;
 }
 
-.line1 {
-    animation: blink 3s ease-in-out infinite;
+.c1 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 1) var(--animation-iteration-count) normal forwards;
 }
 
-@keyframes blink {
+.c2 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 2) var(--animation-iteration-count) normal forwards;
+}
+
+.c2 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 3) var(--animation-iteration-count) normal forwards;
+}
+
+.c3 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 4) var(--animation-iteration-count) normal forwards;
+}
+
+.c4 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 4) var(--animation-iteration-count) normal forwards;
+}
+
+.c5 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 6) var(--animation-iteration-count) normal forwards;
+}
+
+.c6 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 2) var(--animation-iteration-count) normal forwards;
+}
+
+.c7 {
+    animation: pulse var(--animation-duration) ease calc(var(--animation-delay) * 8) var(--animation-iteration-count) normal forwards;
+}
+
+@keyframes pulse {
     0% {
         fill: var(--circuit-board-color);
-    }
-
-    25% {
-        fill: transparent;
+        scale: 1;
     }
 
     50% {
-        fill: var(--circuit-board-shadow-color);
+        fill: rgb(0, 255, 183);
+        scale: 1.09;
     }
 
     100% {
         fill: var(--circuit-board-color);
+        scale: 1;
     }
 }
 
@@ -284,10 +318,10 @@ ul {
 
 .watchHolder {
     width: 200px;
-    height: 50px;
+    height: 70px;
     position: absolute;
     bottom: 2em;
-    border-radius: 999px 999px 100px 100px;
+    border-radius: 999px 999px 250px 250px;
     background-color: #b2e05b;
 }
 
@@ -301,13 +335,15 @@ ul {
 }
 
 .watchHolder__on {
-    height: 14px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
     border-radius: 999px;
-    background-color: red;
+    background-color: rgb(194, 0, 0);
     left: 50%;
-    bottom: 0;
+    bottom: 4px;
     transform: translate(-50%);
+    transition: background-color 0.2s ease-in-out;
+
 }
 
 .watchHolder__left {
@@ -330,7 +366,7 @@ ul {
 
 .watchBody {
     position: absolute;
-    bottom: 60px;
+    bottom: 75px;
     display: grid;
     place-items: center;
     height: 150px;
@@ -345,24 +381,26 @@ ul {
     position: absolute;
     height: 140px;
     width: 140px;
-    bottom: 65px;
+    bottom: 80px;
     cursor: pointer;
     background-color: #00ff00;
+    transition: background-color 300ms ease-in;
     border-radius: 50%;
     clip-path: polygon(0 0, 100% 0, 60% 50%, 100% 100%, 0 100%, 40% 50%);
 }
 
-
-
 .focusBeam {
     position: absolute;
-    bottom: .8em;
+    bottom: 1em;
     height: 40%;
-    width: 200px;
+    max-width: 200px;
+    width: 100%;
     border-bottom-left-radius: 30%;
     border-bottom-right-radius: 30%;
     transform: perspective(200px) rotateX(-45deg);
-    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 255, 0, 0.279));
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 255, 0, 0.433));
+    transition: opacity 300ms ease-in;
+    z-index: 50;
 }
 
 /* WATCH STATE CONTROLS */
@@ -372,15 +410,16 @@ ul {
 }
 
 .watchX[data-watch-on="false"]+.focusBeam {
-    scale: 0;
+    opacity: 0;
 }
 
 .watchX[data-watch-on="false"]+.focusBeam+.skillIcons {
-    scale: 0;
+    opacity: 0;
 }
 
 .skillIcons {
     position: absolute;
+    z-index: 51;
     bottom: 0;
     transform: translateY(-170px);
     display: grid;
@@ -391,9 +430,11 @@ ul {
     display: flex;
     justify-content: center;
     z-index: 100;
+    transition: opacity 300ms ease-in;
 }
 
 .skillIcons img {
+    transition: opacity 300ms ease-in, filter 300ms ease-in;
     position: absolute;
     width: 100px;
     height: 100px;
@@ -402,11 +443,82 @@ ul {
 }
 
 .skillIcons img {
+    cursor: pointer;
     position: absolute;
-    scale: 0;
+    opacity: 0;
     object-fit: contain;
 }
 
+.skillIcons img[data-selected="true"]:hover {
+    filter: drop-shadow(0 0 10px #ff4800);
+}
+
 .skillIcons img[data-selected="true"] {
-    scale: 1;
+    filter: drop-shadow(0 0 10px #00ff00bb);
+    z-index: 52;
+    opacity: 1;
+}
+
+/* RIGHTS */
+
+.rights {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+/* Name animation from codepen*/
+.content {
+    position: relative;
+    display: block;
+    background-color: red;
+}
+
+.content span {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    font-size: 0.9em;
+    transform: translate(0, -50%);
+}
+
+.content span:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px #fcfcfc;
+}
+
+.content span:nth-child(2) {
+    color: var(--circuit-board-color);
+    animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        clip-path: polygon(0% 45%,
+                16% 44%,
+                33% 50%,
+                54% 60%,
+                70% 61%,
+                84% 59%,
+                100% 52%,
+                100% 100%,
+                0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 60%,
+                15% 65%,
+                34% 66%,
+                51% 62%,
+                67% 50%,
+                84% 45%,
+                100% 46%,
+                100% 100%,
+                0% 100%);
+    }
 }
