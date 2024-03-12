@@ -63,9 +63,7 @@ watchHolder__on.addEventListener('click', () => {
 // runs when element came in scene
 function displayEntry(entry) {
     if (entry.isIntersecting) {
-        console.log(entry.target)
-        // bring the watch in view by scrolling to is, smoothly
-        watchX.scrollIntoView({ behavior: "smooth", block: "start" })
+        watchX.dataset.watchOn = 'true'
     }
 }
 
@@ -76,7 +74,7 @@ let callback = function (entries, observer) {
 };
 
 let observer = new IntersectionObserver(callback, {
-    threshold: 0.5
+    threshold: 1
 });
 
 let target = $('.watchContainer');

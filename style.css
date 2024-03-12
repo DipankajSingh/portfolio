@@ -95,7 +95,7 @@ body {
 
 .intro {
     position: relative;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     width: 100%;
     position: relative;
@@ -114,12 +114,11 @@ body {
     text-transform: uppercase;
 }
 
-.intro div {
+.intro>div {
     width: max-content;
     display: flex;
     position: absolute;
-    bottom: 5rem;
-
+    bottom: 0;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -156,7 +155,31 @@ body {
     width: 1.5rem;
 }
 
+/* CIRCUIT BOARD DESIGN */
+.circuitBoard {
+    padding-top: 2rem;
+    position: absolute;
+    top: 45%;
+    right: 010vw;
+    translate: 0 -50%;
+    z-index: -1;
+    width: max-content;
+    height: 50%;
+    rotate: 90deg;
+    filter:
+        drop-shadow(0 0 20px var(--circuit-board-color)) drop-shadow(0 0 10px var(--circuit-board-color));
+}
+
 @media screen and (max-width: 767px) {
+    .intro {
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 1.5rem;
+    }
+
+
+
     .menu-icon {
         display: inline-block;
         position: absolute;
@@ -165,8 +188,18 @@ body {
     }
 
     .circuitBoard {
-        right: 0;
-
+        padding-top: unset;
+        position: relative;
+        top: unset;
+        right: unset;
+        margin: auto auto;
+        translate: unset;
+        z-index: -1;
+        width: max-content;
+        height: 50%;
+        rotate: 90deg;
+        filter:
+            drop-shadow(0 0 20px var(--circuit-board-color)) drop-shadow(0 0 10px var(--circuit-board-color));
     }
 
     .header ul {
@@ -177,13 +210,13 @@ body {
         width: 100%;
         text-align: center;
         font: bold 1.2rem sans-serif;
-        padding: 10px 20px;
+        padding: 10px 10px;
     }
 
     .header {
         flex-direction: column;
         height: fit-content;
-        position: relative;
+        position: sticky;
     }
 
     /* random gradients */
@@ -192,8 +225,8 @@ body {
 
     .logo {
         font: bolder 1.8rem sans-serif;
-        padding-left: 20px;
-        padding-top: 20px;
+        padding-left: 10px;
+        padding-top: 0;
         margin-right: auto;
         justify-self: first baseline;
     }
@@ -231,22 +264,9 @@ ul {
     list-style: none;
 }
 
-/* CIRCUIT BOARD DESIGN */
 
 
-.circuitBoard {
-    padding-top: 2rem;
-    position: absolute;
-    top: 45%;
-    right: 010vw;
-    translate: 0 -50%;
-    z-index: -1;
-    width: max-content;
-    height: 50%;
-    rotate: 90deg;
-    filter:
-        drop-shadow(0 0 20px var(--circuit-board-color)) drop-shadow(0 0 10px var(--circuit-board-color));
-}
+
 
 /*      CIRCUIT BOARD ANIMATIONS */
 
@@ -307,9 +327,14 @@ ul {
 
 /* the watchContainer starts here */
 
+.skillsSection {
+    width: 100%;
+    height: 500px;
+}
+
 .watchContainer {
     position: relative;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: grid;
     place-items: center;
@@ -320,7 +345,7 @@ ul {
     width: 200px;
     height: 70px;
     position: absolute;
-    bottom: 2em;
+    bottom: 0;
     border-radius: 999px 999px 250px 250px;
     background-color: #b2e05b;
 }
@@ -366,13 +391,12 @@ ul {
 
 .watchBody {
     position: absolute;
-    bottom: 75px;
-    display: grid;
+    bottom: -15px;
     place-items: center;
     height: 150px;
     width: 150px;
     background-color: #222222;
-    transform: perspective(500px) rotateX(70deg);
+    transform: perspective(600px) rotateX(70deg);
     border-radius: 50%;
 }
 
@@ -381,7 +405,7 @@ ul {
     position: absolute;
     height: 140px;
     width: 140px;
-    bottom: 80px;
+    bottom: -10px;
     cursor: pointer;
     background-color: #00ff00;
     transition: background-color 300ms ease-in;
@@ -391,12 +415,12 @@ ul {
 
 .focusBeam {
     position: absolute;
-    bottom: 1em;
-    height: 40%;
-    max-width: 200px;
+    bottom: -32px;
+    height: 250px;
+    max-width: 180px;
     width: 100%;
-    border-bottom-left-radius: 30%;
-    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
     transform: perspective(200px) rotateX(-45deg);
     background-image: linear-gradient(to bottom, transparent, rgba(0, 255, 0, 0.433));
     transition: opacity 300ms ease-in;
@@ -462,8 +486,6 @@ ul {
 /* RIGHTS */
 
 .rights {
-    position: absolute;
-    bottom: 0;
     height: 50px;
     width: 100%;
     display: grid;
@@ -521,4 +543,17 @@ ul {
                 100% 100%,
                 0% 100%);
     }
+}
+
+/* hologramScreen start here */
+
+.hologramScreen {
+    top: 0;
+    left: 0;
+    width: 90%;
+    margin: 1em;
+    color: #00ff00;
+    background-color: #ca0d0d;
+    transition: background-color 300ms ease-in;
+    z-index: 100;
 }

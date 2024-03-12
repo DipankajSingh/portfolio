@@ -15,8 +15,6 @@
   </head>
 
   <body>
-    <div id="cursor-dot"></div>
-    <div id="cursor-circle"></div>
     <header class="header">
       <a href="" class="logo">Dipdev<span>.tech</span></a>
       <label class="menu-icon" for="menu-btn"
@@ -84,28 +82,33 @@
         </g>
       </svg>
     </main>
-
-    <section class="watchContainer">
-      <div class="watchHolder">
-        <button class="watchHolder__on"></button>
-        <button class="watchHolder__left"></button>
-        <button class="watchHolder__right"></button>
+    <div class="skillsSection">
+      <div class="watchContainer">
+        <div class="watchHolder">
+          <button class="watchHolder__on"></button>
+          <button class="watchHolder__left"></button>
+          <button class="watchHolder__right"></button>
+        </div>
+        <div class="watchBody"></div>
+        <div data-watchOn="false" class="watchX"></div>
+        <dir class="focusBeam"></dir>
+        <div class="skillIcons">
+          <img data-selected="false" src="./icons/html.svg" alt="html" />
+          <img data-selected="false" src="./icons/css.svg" alt=" css" />
+          <img data-selected="false" src="./icons/js.svg" alt=" js" />
+          <img data-selected="false" src="./icons/react.svg" alt=" react" />
+          <img data-selected="false" src="./icons/nodejs.svg" alt=" node" />
+          <img data-selected="false" src="./icons/mongodb.svg" alt=" mongo" />
+          <img data-selected="false" src="./icons/git.svg" alt=" git" />
+          <img data-selected="false" src="./icons/github.svg" alt=" github" />
+          <img
+            data-selected="false"
+            src="./icons/tailwind.svg"
+            alt=" tailwind"
+          />
+        </div>
       </div>
-      <div class="watchBody"></div>
-      <div data-watchOn="true" class="watchX"></div>
-      <dir class="focusBeam"></dir>
-      <div class="skillIcons">
-        <img data-selected="false" src="./icons/html.svg" alt="html" />
-        <img data-selected="false" src="./icons/css.svg" alt=" css" />
-        <img data-selected="false" src="./icons/js.svg" alt=" js" />
-        <img data-selected="false" src="./icons/react.svg" alt=" react" />
-        <img data-selected="false" src="./icons/nodejs.svg" alt=" node" />
-        <img data-selected="false" src="./icons/mongodb.svg" alt=" mongo" />
-        <img data-selected="false" src="./icons/git.svg" alt=" git" />
-        <img data-selected="false" src="./icons/github.svg" alt=" github" />
-        <img data-selected="false" src="./icons/tailwind.svg" alt=" tailwind" />
-      </div>
-    </section>
+    </div>
 
     <footer>
       <div class="rights">
