@@ -59,11 +59,17 @@ watchHolder__on.addEventListener('click', () => {
 })
 
 // INTERSECTION OBSERVER
-
+let target = $('.watchContainer');
+let Animated_lines = $('.Animated_lines');
 // runs when element came in scene
 function displayEntry(entry) {
     if (entry.isIntersecting) {
         watchX.dataset.watchOn = 'true'
+    } else {
+        watchX.dataset.watchOn = 'false'
+    }
+    if (entry.isIntersecting && entry.target == Animated_lines) {
+        Animated_lines.style.setProperty('--animation-play-state', 'running');
     }
 }
 
@@ -74,9 +80,8 @@ let callback = function (entries, observer) {
 };
 
 let observer = new IntersectionObserver(callback, {
-    threshold: 1
+    threshold: .5
 });
 
-let target = $('.watchContainer');
-
 observer.observe(target);
+observer.observe(Animated_lines);

@@ -641,7 +641,6 @@ ul {
 }
 
 @media screen and (max-width: 767px) {
-
     .project__card .project__info {
         max-width: unset;
     }
@@ -655,7 +654,6 @@ ul {
         max-width: unset;
         object-fit: cover;
     }
-
 }
 
 /* Animated lines */
@@ -664,44 +662,78 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    max-width: 967px;
     gap: 1em;
+    margin: 0 auto;
+}
+
+.projectsHeader h1 {
+    font-size: 2.5em;
 }
 
 .Animated_lines {
     display: flex;
     position: relative;
-    gap: 5px;
     height: 20px;
     width: 100%;
+    --line-width: 8px;
+    --animation-delay: 100ms;
+    --animation-duration: 1s;
+    --animation-state: forwards;
+    --animation-play-state: paused;
 }
 
 .Animated_lines span {
     position: relative;
     display: block;
-    background-color: lawngreen;
+    background-color: var(--circuit-board-color);
     width: 100%;
     margin: auto 0;
+    transform-origin: right;
+    scale: 0;
+
 }
 
 .Animated_lines span:nth-child(1) {
-    height: 14px;
+    animation: scaleFromRight var(--animation-duration) calc(var(--animation-delay) + var(--animation-duration) * 2) var(--animation-state) ease-in;
+    height: var(--line-width);
+    animation-play-state: var(--animation-play-state);
 
 }
 
-
 .Animated_lines span:nth-child(2) {
-    height: 11px;
+    animation: scaleFromRight var(--animation-duration) calc(var(--animation-delay) + var(--animation-duration)) var(--animation-state) ease-in;
+    height: calc(var(--line-width) - 2px);
+    animation-play-state: var(--animation-play-state);
 }
 
 .Animated_lines span:nth-child(3) {
-    height: 8px;
+    height: calc(var(--line-width) - 4px);
+    animation: scaleFromRight var(--animation-duration) var(--animation-delay) var(--animation-state) ease-in;
+    animation-play-state: var(--animation-play-state);
+    border-radius: 0 50% 50% 0;
 }
 
-.Animated_lines::after {
+.Animated_lines span::after {
     position: absolute;
-    height: 20px;
-    width: 20px;
-    background-color: #ca0d0d;
+    height: 250%;
+    aspect-ratio: 1;
+    top: 50%;
+    left: -10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background-color: inherit;
     content: '';
+    box-shadow: 0 0 20px var(--circuit-board-shadow-color), 0 0 10px var(--circuit-board-color);
+}
 
+@keyframes scaleFromRight {
+    0% {
+        scale: 0;
+    }
+
+    100% {
+        scale: 1;
+    }
 }
