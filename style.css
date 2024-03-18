@@ -14,6 +14,7 @@
     --animation-delay: 1s;
     --animation-duration: 2s;
     --animation-iteration-count: 3;
+    scroll-behavior: smooth;
 }
 
 /*  global styles resets */
@@ -666,6 +667,7 @@ ul {
     max-width: 967px;
     gap: 1em;
     margin: 0 auto;
+    margin-bottom: 1.5em;
 }
 
 .projectsHeader h1 {
@@ -736,4 +738,90 @@ ul {
     100% {
         scale: 1;
     }
+}
+
+/* Contact section */
+.contactContainer {
+    padding: 2em;
+}
+
+.contactContainer .contactHeader h1 {
+    font-size: 3.5em;
+    text-align: center;
+}
+
+.contactContainer .contactHeader p {
+    text-align: center;
+}
+
+.contactContainer ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    max-width: 567px;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.contactContainer ul li {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    font-size: 1.5em;
+}
+
+.contactContainer ul li a {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    color: inherit;
+    transform-origin: center;
+    transition: color .3s ease-in-out, scale .3s ease-in-out;
+}
+
+.contactContainer ul li a:hover {
+    color: var(--circuit-board-color);
+    scale: .9;
+
+}
+
+.contactContainer ul li a span {
+    font-size: 1.5em;
+
+}
+
+.contactContainer .or {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+}
+
+.contactInfo {
+    gap: .3em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.contactInfo p {
+    display: flex;
+    margin-left: 1em;
+    word-wrap: normal;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+
+}
+
+.contactInfo p i {
+    font-size: 1.2em;
+    color: var(--circuit-board-color);
 }
