@@ -85,3 +85,20 @@ let observer = new IntersectionObserver(callback, {
 
 observer.observe(target);
 observer.observe(Animated_lines);
+
+// custom-cursor
+
+const customCursor = $('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    // get the position of the mouse
+    // and then get client rect of the custom-cursor
+    const { clientX, clientY } = e
+    const { left, top, width, height } = customCursor.getBoundingClientRect()
+
+    customCursor.style.transform = `translate(${clientX - (width / 2)}px, ${clientY - (height / 2)}px)`
+
+
+
+})
+

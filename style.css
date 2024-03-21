@@ -7,14 +7,15 @@
     --light-color: #FDFAF6;
     --hover-color: #FDFAF6;
     --navigation-btn-color: var(--accent-color);
-    --gradient-left-color: #000080;
-    --gradient-right-color: #6666FF;
+    --gradient-left-color: #22e30043;
+    --gradient-right-color: #00000000;
     --circuit-board-color: #28db00;
     --circuit-board-shadow-color: rgb(4, 185, 4);
     --animation-delay: 1s;
     --animation-duration: 2s;
     --animation-iteration-count: 3;
     scroll-behavior: smooth;
+    --glowing-background-image: "https://nodejs.org/static/images/patterns/hexagon-grid.svg";
 }
 
 /*  global styles resets */
@@ -22,17 +23,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
-
+a {
+    cursor: none;
+}
 
 body {
     background-color: var(--dark-color);
     color: var(--dark-color-foreground);
     width: 100%;
     position: relative;
+    cursor: none;
 }
+
+
 
 .header {
     position: sticky;
@@ -44,7 +49,7 @@ body {
     padding: .5rem 0;
     top: 0;
     z-index: 101;
-    background-color: var(--dark-color);
+    background: linear-gradient(#000000, 62%, #45b79700);
 }
 
 
@@ -64,16 +69,28 @@ body {
 
 .logo {
     font: bolder 1.8rem sans-serif;
-
     color: var(--accent-color);
 }
 
 .logo span {
-    font: bolder 1.8rem sans-serif;
-
+    display: inline-block;
     margin-right: auto;
     justify-self: first baseline;
-    color: var(--dark-color);
+    color: red;
+    font-weight: bolder;
+    animation: rotate 10s infinite linear;
+    font-size: medium;
+}
+
+@keyframes rotate {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+
 }
 
 .menu-icon {
@@ -99,6 +116,35 @@ body {
     padding-bottom: 6rem;
 }
 
+.glowingBackground {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://nodejs.org/static/images/patterns/hexagon-grid.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.glowingBackground:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(50% 50% at 50% 50%,
+            var(--gradient-left-color) 0%,
+            var(--gradient-right-color) 100%);
+    opacity: 0.6;
+}
+
+
+
+
 .intro h1 {
     position: relative;
     margin: auto 0;
@@ -111,7 +157,7 @@ body {
     text-transform: uppercase;
 }
 
-.intro>div {
+.intro__info {
     width: max-content;
     display: flex;
     position: absolute;
@@ -138,7 +184,6 @@ body {
     display: grid;
     place-items: center;
     border-radius: 50%;
-    cursor: pointer;
     transition: background-color 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
@@ -250,7 +295,6 @@ body {
 .menu-icon img {
     height: 2rem;
     width: 2rem;
-    cursor: pointer;
 }
 
 a {
@@ -352,7 +396,6 @@ ul {
 .watchHolder button {
     position: absolute;
     display: inline-block;
-    cursor: pointer;
     border: none;
 }
 
@@ -403,7 +446,6 @@ ul {
     height: 140px;
     width: 140px;
     bottom: -10px;
-    cursor: pointer;
     background-color: #00ff00;
     transition: background-color 300ms ease-in;
     border-radius: 50%;
@@ -464,7 +506,6 @@ ul {
 }
 
 .skillIcons img {
-    cursor: pointer;
     position: absolute;
     opacity: 0;
     object-fit: contain;
@@ -824,4 +865,49 @@ ul {
 .contactInfo p i {
     font-size: 1.2em;
     color: var(--circuit-board-color);
+}
+
+/* custom-cursor */
+
+.custom-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 9999;
+    width: 15px;
+    height: 15px;
+    background-color: var(--circuit-board-shadow-color);
+    border-radius: 50%;
+    mix-blend-mode: exclusion;
+    transform-origin: center;
+    transition: width .3s ease-in-out, height .3s ease-in-out;
+}
+
+body:has(a:hover) .custom-cursor,
+body:has(button:hover) .custom-cursor {
+    width: 25px;
+    height: 25px;
+    animation: pulse-cursor 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    --cursor-pulse-color: green;
+}
+
+@keyframes pulse-cursor {
+
+    0% {
+        box-shadow: 0 0 0 0 rgb(0, 0, 0), 0 0 0 15px rgba(0, 158, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 20px rgb(0, 0, 0), 0 0 0 15px rgba(0, 158, 0, 0.3);
+    }
+
+    75% {
+        box-shadow: 0 0 0 0 rgb(0, 0, 0), 0 0 0 rgba(0, 158, 0, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgb(0, 0, 0), 0 0 0 15px rgba(0, 158, 0, 0.3);
+    }
+
 }
