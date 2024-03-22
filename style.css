@@ -104,12 +104,9 @@ body {
     filter: invert(100%);
 }
 
-
-
-
 .intro {
     position: relative;
-    height: 90vh;
+    height: 90dvh;
     display: flex;
     width: 100%;
     position: relative;
@@ -227,6 +224,7 @@ body {
         position: absolute;
         right: 20px;
         top: 20px;
+        z-index: 101;
     }
 
     .circuitBoard {
@@ -245,26 +243,22 @@ body {
     }
 
     .header ul {
-        flex-direction: column;
-    }
-
-    .header ul li {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        text-align: center;
-        font: bold 1.2rem sans-serif;
-        padding: 10px 10px;
-    }
-
-    .header {
+        height: 100dvh;
+        display: flex;
         flex-direction: column;
-        height: fit-content;
-        position: sticky;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--dark-color);
+        z-index: 100;
+        background-color: var(--circuit-board-color);
+        transition: scale 300ms ease-in;
     }
 
     /* random gradients */
-
-
-
     .logo {
         font: bolder 1.8rem sans-serif;
         padding-left: 10px;
@@ -273,18 +267,13 @@ body {
         justify-self: first baseline;
     }
 
-
-
     .menu-btn:not(:checked)+.menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out;
+        scale: 0;
+
     }
 
     .menu-btn:checked+.menu {
-        max-height: 240px;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out;
+        scale: 1;
     }
 }
 
@@ -873,6 +862,7 @@ ul {
     position: fixed;
     left: 0;
     top: 0;
+    opacity: 0;
     pointer-events: none;
     z-index: 9999;
     width: 15px;

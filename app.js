@@ -106,7 +106,7 @@ if (navigator.userAgent.match(/Android/i)
         // and then get client rect of the custom-cursor
         const { clientX, clientY } = e
         const { left, top, width, height } = customCursor.getBoundingClientRect()
-
+        customCursor.style.opacity = '1'
         customCursor.style.transform = `translate(${clientX - (width / 2)}px, ${clientY - (height / 2)}px)`
     })
 }
