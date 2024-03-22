@@ -90,15 +90,32 @@ observer.observe(Animated_lines);
 
 const customCursor = $('.custom-cursor');
 
-document.addEventListener('mousemove', (e) => {
-    // get the position of the mouse
-    // and then get client rect of the custom-cursor
-    const { clientX, clientY } = e
-    const { left, top, width, height } = customCursor.getBoundingClientRect()
+// Hide the custom-cursor on mobile devices bby checking the operating system
+if (navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)) {
+    customCursor.style.display = 'none'
 
-    customCursor.style.transform = `translate(${clientX - (width / 2)}px, ${clientY - (height / 2)}px)`
+} else {
+    document.addEventListener('mousemove', (e) => {
+        // get the position of the mouse
+        // and then get client rect of the custom-cursor
+        const { clientX, clientY } = e
+        const { left, top, width, height } = customCursor.getBoundingClientRect()
+
+        customCursor.style.transform = `translate(${clientX - (width / 2)}px, ${clientY - (height / 2)}px)`
+    })
+}
 
 
 
-})
+
+
+
+
+
 
